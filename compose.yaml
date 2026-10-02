@@ -1,0 +1,21 @@
+services:
+  peopleops:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/storage/app/sqlite/database.sqlite
+      SESSION_DRIVER: file
+      CACHE_STORE: file
+      QUEUE_CONNECTION: sync
+      SEED_DEMO: "true"
+    volumes:
+      - peopleops_sqlite:/var/www/html/storage/app/sqlite
+    restart: unless-stopped
+
+volumes:
+  peopleops_sqlite:
